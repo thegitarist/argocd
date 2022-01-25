@@ -13,8 +13,7 @@ server:
           version: v3
           valueFiles:
           - values.yaml
-          - ../values-override.yaml
-        path: argocd/argo-cd
+        path: argocd
         repoURL: https://github.com/thegitarist/argocd.git
         targetRevision: HEAD
       syncPolicy:

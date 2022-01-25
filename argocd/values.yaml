@@ -1,0 +1,86 @@
+server:
+  extraArgs:
+    - --insecure
+  additionalApplications: 
+    - name: argocd
+      namespace: argocd
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      project: argocd
+      source:
+        helm:
+          version: v3
+          valueFiles:
+          - values.yaml
+          - ../values-override.yaml
+        path: argocd/argo-cd
+        repoURL: https://github.com/thegitarist/argocd.git
+        targetRevision: HEAD
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
+    - name: apps
+      namespace: argocd
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      project: argocd
+      source:
+        path: apps
+        repoURL: https://github.com/thegitarist/argocd.git
+        targetRevision: HEAD
+        directory:
+          recurse: true
+          jsonnet: {}
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+    - name: rojects
+      namespace: argocd
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      project: argocd
+      source:
+        path: projects
+        repoURL: https://github.com/thegitarist/argocd.git
+        targetRevision: HEAD
+        directory:
+          recurse: true
+          jsonnet: {}
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+  additionalProjects: 
+  - name: argocd
+    namespace: argocd
+    additionalLabels: {}
+    additionalAnnotations: {}
+    description: Argocd Project
+    sourceRepos:
+    - '*'
+    destinations:
+    - namespace: argocd
+      server: https://kubernetes.default.svc
+    clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+    orphanedResources:
+      warn: false
+configs:
+  repositories:
+    helm-repo:
+      name: stable
+      type: helm
+      url: https://charts.helm.sh/stable
+    argocd-repo:
+      name: argo-cd
+      type: helm      
+      url: https://argoproj.github.io/argo-helm
+    root-repo:
+      name: my-repo
+      type: git
+      url: https://github.com/thegitarist/argocd.git

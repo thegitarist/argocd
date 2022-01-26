@@ -2,6 +2,8 @@
 
 ```bash
 
+# source https://www.arthurkoziel.com/setting-up-argocd-with-helm/
+
 # if ur using kind as test cluster env
 kind create cluster --name my-cluster
 kind delete cluster --name my-cluster

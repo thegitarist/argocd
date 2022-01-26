@@ -2,10 +2,13 @@
 
 ```bash
 
+# install argocd via helm
+helm install argo-cd argocd --namespace=argocd --create-namespace
+
 # get argocd ui admin password
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 
-# 
-kubectl port-forward svc/argocd-server -n argocd 8080:443
+# setup port-forward for temporary access
+kubectl port-forward service/argo-cd-argocd-server -n argocd 8080:443
 
 ```

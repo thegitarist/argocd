@@ -27,3 +27,7 @@ argo-cd:
         name: argo-cd
         type: helm      
         url: https://argoproj.github.io/argo-helm
+      this-repo:
+        name: this-repo
+        type: git
+        url: https://github.com/thegitarist/argocd.git

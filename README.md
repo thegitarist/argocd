@@ -2,6 +2,10 @@
 
 ```bash
 
+# if ur using kind as test cluster env
+kind create cluster --name my-cluster
+kind delete cluster --name my-cluster
+
 # install argocd via helm
 helm install argo-cd argocd --namespace=argocd --create-namespace
 

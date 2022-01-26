@@ -4,10 +4,10 @@ argo-cd:
       - --insecure
   configs:
     repositories:
-      helm-repo:
-        name: stable
-        type: helm
-        url: https://charts.helm.sh/stable
+      # helm-repo:
+      #   name: stable
+      #   type: helm
+      #   url: https://charts.helm.sh/stable
       argocd-repo:
         name: argo-cd
         type: helm      

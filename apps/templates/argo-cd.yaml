@@ -7,12 +7,12 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    server: https://kubernetes.default.svc
+    server: {{ .Values.spec.destination.server }}
     namespace: argocd
   project: default
   source:
     path: argocd/
-    repoURL: https://github.com/thegitarist/argocd.git
+    repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: HEAD
   syncPolicy:
     automated:

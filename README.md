@@ -9,7 +9,7 @@ kind create cluster --name my-cluster
 kind delete cluster --name my-cluster
 
 # install argocd via helm
-helm install argo-cd argocd --namespace=argocd --create-namespace
+helm install argocd argocd --namespace=argocd --create-namespace
 
 # get argocd ui admin password
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo

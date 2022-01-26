@@ -2,12 +2,27 @@ argo-cd:
   server:
     extraArgs:
       - --insecure
+    additionalApplications:
+      - name: apps
+        namespace: default
+        finalizers:
+          - resources-finalizer.argocd.argoproj.io
+        destination:
+          server: https://kubernetes.default.svc
+          namespace: default
+        project: default
+        source:
+          path: apps/
+          repoURL: https://github.com/thegitarist/argocd.git
+          targetRevision: HEAD
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: true
   configs:
+    secret:
+      argocdServerAdminPassword: "$2a$10$GB0PLIczZYRN5HSiXeALIOBw.52Kqt9R6MSawF0vttESdCs9IC1z6%"
     repositories:
-      # helm-repo:
-      #   name: stable
-      #   type: helm
-      #   url: https://charts.helm.sh/stable
       argocd-repo:
         name: argo-cd
         type: helm      

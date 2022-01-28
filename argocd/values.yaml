@@ -9,7 +9,7 @@ argo-cd:
           - resources-finalizer.argocd.argoproj.io
         destination:
           server: https://kubernetes.default.svc
-          namespace: default
+          namespace: argocd
         project: default
         source:
           path: apps/

@@ -4,16 +4,13 @@ metadata:
   name: my-app
   namespace: argocd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
+  destination:
+    namespace: my-app
+    server: {{ .Values.spec.destination.server }}
   project: default
   source:
+    path: my-app/
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
-    path: my-app/
-  destination:
-    server: {{ .Values.spec.destination.server }}
-    namespace: my-app
-  syncPolicy:
-    syncOptions:
-    - CreateNamespace=true

@@ -4,4 +4,4 @@ spec:
   source:
     repoURL: https://github.com/thegitarist/argocd.git
     targetRevision: HEAD
-    path: apps
+    path: applications/

@@ -20,6 +20,23 @@ argo-cd:
         syncPolicy:
           syncOptions:
           - CreateNamespace=true
+      - name: applications
+        namespace: argocd
+        destination:
+          namespace: argocd
+          server: https://kubernetes.default.svc
+        project: default
+        source:
+          path: applications/
+          repoURL: https://github.com/thegitarist/argocd.git
+          targetRevision: HEAD
+          directory:
+            recurse: true
+            jsonnet: {}
+        syncPolicy:
+          automated:
+            selfHeal: true
+            prune: true
   configs:
     secret:
       argocdServerAdminPassword: "$2a$10$GB0PLIczZYRN5HSiXeALIOBw.52Kqt9R6MSawF0vttESdCs9IC1z6%"

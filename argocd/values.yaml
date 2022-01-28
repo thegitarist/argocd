@@ -3,22 +3,23 @@ argo-cd:
     extraArgs:
       - --insecure
     additionalApplications:
-      - name: apps
+      - name: argocd
         namespace: argocd
-        finalizers:
-          - resources-finalizer.argocd.argoproj.io
         destination:
-          server: https://kubernetes.default.svc
           namespace: argocd
+          server: https://kubernetes.default.svc
         project: default
         source:
-          path: apps/
+          helm:
+            version: v3
+            valueFiles:
+            - values.yaml
+          path: argocd/
           repoURL: https://github.com/thegitarist/argocd.git
           targetRevision: HEAD
         syncPolicy:
-          automated:
-            prune: true
-            selfHeal: true
+          syncOptions:
+          - CreateNamespace=true
   configs:
     secret:
       argocdServerAdminPassword: "$2a$10$GB0PLIczZYRN5HSiXeALIOBw.52Kqt9R6MSawF0vttESdCs9IC1z6%"

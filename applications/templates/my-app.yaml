@@ -10,7 +10,10 @@ spec:
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
-    path: applications/my-app/
+    path: my-app/
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: my-app
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true

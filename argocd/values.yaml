@@ -49,3 +49,7 @@ argo-cd:
         name: this-repo
         type: git
         url: https://github.com/thegitarist/argocd.git
+      vm-repo:
+        name: vm-repo
+        type: helm
+        url: https://victoriametrics.github.io/helm-charts

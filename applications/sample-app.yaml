@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: sample-app
     server: https://kubernetes.default.svc
-  project: sample-project
+  project: default
   source:
     path: sample-app/
     repoURL: https://github.com/thegitarist/argocd.git

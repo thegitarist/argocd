@@ -11,6 +11,9 @@ kind delete cluster --name my-cluster
 # install argocd via helm
 helm install argocd argocd --namespace=argocd --create-namespace
 
+# check deployment progress
+kubectl get all -n argocd
+
 # get argocd ui admin password
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 

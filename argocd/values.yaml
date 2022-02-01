@@ -25,7 +25,7 @@ argo-cd:
         destination:
           namespace: argocd
           server: https://kubernetes.default.svc
-        project: argocd
+        project: default
         source:
           path: applications/
           repoURL: https://github.com/thegitarist/argocd.git
